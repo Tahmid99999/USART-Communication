@@ -1,0 +1,81 @@
+->DDRD = DDRD | B00000010;{
+
+    The line DDRD = DDRD | B00000010; sets the second bit of the DDRD register to be an output.
+
+    The DDRD register is used to configure the direction of the digital pins of the AVR microcontroller.
+    If a bit in the DDRD register is set to 1, it means that the corresponding pin is configured as an output. 
+    If a bit in the DDRD register is set to 0, it means that the corresponding pin is configured as an input.
+
+    So, the line DDRD = DDRD | B00000010; sets the second bit of the DDRD register to 1, which means that the second digital pin
+    of Port D is configured as an output. The B00000010 is a binary constant, and | is the binary OR operator. The line sets the 
+    second bit of DDRD to 1 while leaving the other bits unchanged.
+
+}
+
+->UCSR0B = UCSR0B | B00011000;
+
+{
+    The line UCSR0B = UCSR0B | B00011000; sets the RXEN0 and TXEN0 bits of the UCSR0B register to 1, which enables the receiver and 
+    transmitter of the USART module of the AVR microcontroller.
+
+    The UCSR0B register is used to control various aspects of the USART module, including enabling the receiver and transmitter. 
+    If the RXEN0 bit is set to 1, it means that the receiver of the USART is enabled. If the TXEN0 bit is set to 1, it means that
+    the transmitter of the USART is enabled.
+
+    So, the line UCSR0B = UCSR0B | B00011000; sets both the RXEN0 and TXEN0 bits of the UCSR0B register to 1, which means that 
+    both the receiver and transmitter of the USART are enabled. The B00011000 is a binary constant, and | is the binary OR operator. The line sets both the RXEN0 
+    and TXEN0 bits of UCSR0B to 1 while leaving the other bits unchanged.
+
+ }
+
+
+->UCSR0C = UCSR0C | B00000110;{
+
+    The line UCSR0C = UCSR0C | B00000110; sets the UCSZ01 and UCSZ00 bits of the UCSR0C register to 1, which sets
+    the character size of the USART module of the AVR microcontroller to 8 data bits.
+
+    The UCSR0C register is used to configure various aspects of the USART module, including the character size
+    The UCSZ01 and UCSZ00 bits are used to set the character size. If both bits are set to 1, it means that 
+    the character size is set to 8 data bits.
+
+    So, the line UCSR0C = UCSR0C | B00000110; sets both the UCSZ01 and UCSZ00 bits of the UCSR0C
+    register to 1, which means that the character size of the USART is set to 8 data bits. 
+    The B00000110 is a binary constant, and | is the binary OR operator. The line sets both the
+    UCSZ01 and UCSZ00 bits of UCSR0C to 1 while leaving the other bits unchanged.
+}
+
+
+->UCSR0A |= (1 << U2X0); {
+
+    The line UCSR0A |= (1 << U2X0); sets the U2X0 bit of the UCSR0A register to 1, which enables double speed mode for 
+    the USART module of the AVR microcontroller.
+
+    The UCSR0A register is used to configure various aspects of the USART module, including the double speed mode. 
+    The U2X0 bit is used to enable double speed mode. If the U2X0 bit is set to 1, it means that double speed mode is enabled.
+
+    So, the line UCSR0A |= (1 << U2X0); sets the U2X0 bit of the UCSR0A register to 1, which means that double speed 
+    mode is enabled. The (1 << U2X0) is a binary constant that has the U2X0 bit set to 1. The |= operator is used to set the U2X0 
+    bit of UCSR0A to 1 while leaving the other bits unchanged.
+
+}
+
+->UBRR0 = 207; {
+
+  The line UBRR0 = 207; sets the value of the UBRR0 register to 207.
+
+  The UBRR0 register is used to set the baud rate of the USART module of the AVR microcontroller. 
+  The baud rate is the number of bits transmitted or received per second. The value of UBRR0 determines the baud rate, 
+  and the formula to calculate the value of UBRR0 depends on the clock frequency of the microcontroller and the desired baud rate.
+
+  So, the line UBRR0 = 207; sets the value of the UBRR0 register to 207, which sets the baud rate of the 
+  USART to a specific value. This value of 207 is specific to the clock frequency and desired baud rate,
+  and might need to be changed for different microcontrollers or different baud rates.
+ }
+
+****BAUD = F_CPU / (16 * (UBRR0 + 1))
+F_CPU=is the clock frequncy of the avr microcontroller.
+lets... consider F_CPU=16 Mhz
+UBRO = F_CPU/16*BAUD-1;
+     =16M/16*9600;            (to set baud rate 9600bps)
+     =104-1.
+     =103.
